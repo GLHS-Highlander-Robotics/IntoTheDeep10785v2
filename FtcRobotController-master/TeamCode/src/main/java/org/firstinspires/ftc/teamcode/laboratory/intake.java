@@ -1,9 +1,11 @@
-package laboratory;
+package org.firstinspires.ftc.teamcode.laboratory;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.teamcode.subsystem.constants.constants;
 
 
 @Config
@@ -12,15 +14,16 @@ public class intake extends OpMode{
     //Initialize Variables
     private Servo intake_left, intake_right, intake_roller;
     private boolean rt;
-    constants constants;
+    constants consts;
 
 
     @Override
     public void init(){
+        consts = new constants();
         // Initialize Servo
-        intake_roller=hardwareMap.get(Servo.class, constants.intake_roller_hm);
-        intake_left=hardwareMap.get(Servo.class, constants.intake_left_hm);
-        intake_right=hardwareMap.get(Servo.class, constants.intake_right_hm);
+        intake_roller=hardwareMap.get(Servo.class, consts.intake_roller_hm);
+        intake_left=hardwareMap.get(Servo.class, consts.intake_left_hm);
+        intake_right=hardwareMap.get(Servo.class, consts.intake_right_hm);
 
         intake_right.setPosition(0);
         intake_right.setPosition(1);
