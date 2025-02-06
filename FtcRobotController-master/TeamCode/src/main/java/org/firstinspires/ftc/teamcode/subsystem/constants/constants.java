@@ -5,11 +5,11 @@ public class constants {
     public String intake_roller_hm, intake_right_hm, intake_left_hm, otos_hm, fl_hm, fr_hm, bl_hm, br_hm, intake_rightslide_hm, intake_leftslide_hm, outtake_rightslide_hm, outtake_leftslide_hm, outtake_claw_hm, outtake_right_hm, outtake_left_hm;
     public double linearOTOSconst, angularOTOSconst;
     public double REV_TicksPerRevolution, GoBilda_TicksPerRevolution;
-    public double iP, iD;
-    public double oP, oD;
-    public double hP, hI, hD;
-    public double dP, dD, dF;
-    public double sP, sD, sF;
+    public double iP, iD; // Input PD
+    public double oP, oD; // Output PD
+    public double hP, hI, hD; // Heading PID
+    public double dP, dD, dF; // Drive PID
+    public double sP, sD, sF; // Strafe PDF
 
     public constants(){
 

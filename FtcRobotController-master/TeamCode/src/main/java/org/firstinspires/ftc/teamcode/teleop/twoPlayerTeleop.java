@@ -9,8 +9,8 @@ import org.firstinspires.ftc.teamcode.subsystem.localization.localization;
 import org.firstinspires.ftc.teamcode.subsystem.intake.intake;
 
 @Config
-@TeleOp(name = "OG Two Player Teleop v2 >:)")
-public class OldDriveTwoPlayerTeleop_v2 extends OpMode {
+@TeleOp(name = "Two Player Teleop >:)")
+public class twoPlayerTeleop extends OpMode {
 
     //Subsystems
     drive drive;
