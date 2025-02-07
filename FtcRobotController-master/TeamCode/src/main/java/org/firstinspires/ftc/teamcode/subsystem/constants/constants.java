@@ -10,6 +10,9 @@ public class constants {
     public double hP, hI, hD; // Heading PID
     public double dP, dD, dF; // Drive PID
     public double sP, sD, sF; // Strafe PDF
+    public double gp1dead; //Gamepad 1 Deadzones
+    public int outMotorTolerances;
+    public double currentDrawThreshold;
 
     public constants(){
 
@@ -57,5 +60,10 @@ public class constants {
 
         oD = 0;
 
+        gp1dead = 0.3;
+
+        outMotorTolerances = 3;
+
+        currentDrawThreshold = 1000;
     }
 }
