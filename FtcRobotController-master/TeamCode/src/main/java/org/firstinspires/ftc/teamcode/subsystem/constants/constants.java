@@ -22,19 +22,19 @@ public class constants {
 
         intake_roller_hm = "intake_roll"; //PIN S0-EH
 
-        otos_hm = "my_otos"; //PIN I2C0-CH
+        otos_hm = "myOTOS"; //PIN I2C0-CH
 
-        linearOTOSconst = 1;
+        linearOTOSconst = 1.0771;
 
-        angularOTOSconst = 1;
+        angularOTOSconst = 1.0005;
 
-        fl_hm = "front_left";
+        fl_hm = "front_left"; //PIN M0-CH
 
-        fr_hm = "front_right";
+        fr_hm = "front_right"; // PIN M1-CH
 
-        bl_hm = "back_left";
+        bl_hm = "back_left"; //PIN M2-CH
 
-        br_hm = "back_right";
+        br_hm = "back_right"; //PIN M3-CH
 
         intake_leftslide_hm = "intake_lslide";
 

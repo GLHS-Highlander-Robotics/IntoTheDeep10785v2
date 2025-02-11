@@ -22,7 +22,7 @@ public class linear_otos extends LinearOpMode {
         }
         waitForStart();
         while (opModeIsActive()){
-            telemetry.addData("movement", find.getPosition().y);
+            telemetry.addData("movement", find.myOtos.getPosition().y);
             telemetry.update();
         }
     }

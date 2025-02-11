@@ -69,4 +69,29 @@ public class intake{
         }
     }
 
+    public void setMotorPowers(double powers){
+        if(Math.signum((double) (left_slide.getCurrentPosition() - right_slide.getCurrentPosition())) > consts.outMotorTolerances){
+            if(left_slide.getCurrentPosition() > right_slide.getCurrentPosition()){
+                if(powers > 0){
+                    right_slide.setPower(Math.signum(powers));
+                }
+                else {
+                    left_slide.setPower(-1*Math.signum(powers));
+                }
+            }
+            else{
+                if(powers > 0){
+                    right_slide.setPower(-1*Math.signum(powers));
+                }
+                else {
+                    left_slide.setPower(Math.signum(powers));
+                }
+            }
+        }
+        else{
+            right_slide.setPower(powers);
+            left_slide.setPower(powers);
+        }
+    }
+
 }

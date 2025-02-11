@@ -2,10 +2,12 @@ package org.firstinspires.ftc.teamcode.subsystem.drive;
 
 import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.subsystem.calculations.Vector2D;
 import org.firstinspires.ftc.teamcode.subsystem.constants.constants;
+import org.firstinspires.ftc.teamcode.subsystem.localization.localization;
 
 public class drive {
     public DcMotorEx FrontL, FrontR, BackL, BackR;
@@ -30,6 +32,8 @@ public class drive {
         FrontR = hardwareMap.get(DcMotorEx.class, consts.fr_hm);
         BackL = hardwareMap.get(DcMotorEx.class, consts.bl_hm);
         BackR = hardwareMap.get(DcMotorEx.class, consts.br_hm);
+        FrontL.setDirection(DcMotorSimple.Direction.REVERSE);
+        BackL.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public double pidHeading(double target, double kp, double ki, double kd, double current){
@@ -72,10 +76,29 @@ public class drive {
         BackR.setPower((driveCorrection+strafeCorrection-inputTurn)*speed);
     }
 
-    public void driveFromController(double drive, double strafe, double turn){
-        FrontL.setPower((drive+strafe+turn));
-        FrontR.setPower((drive-strafe-turn));
-        BackL.setPower((drive-strafe+turn));
-        BackR.setPower((drive+strafe-turn));
+    public void RobotCentricDrive(double drive, double strafe, double turn){
+        double max = Math.max(Math.max(Math.abs(drive+strafe+turn), Math.abs(drive+strafe-turn)),Math.max(Math.abs(drive-strafe+turn),Math.abs(drive-strafe-turn)));
+        FrontL.setPower((drive+strafe+turn)/max);
+        FrontR.setPower((drive-strafe-turn)/max);
+        BackL.setPower((drive-strafe+turn)/max);
+        BackR.setPower((drive+strafe-turn)/max);
+    }
+
+    public void FieldCentricDrive(double drive, double strafe, double turn, double botHeading){
+        RobotCentricDrive(Math.cos(Math.atan2(strafe, drive)+Math.toRadians(-botHeading)), Math.sin(Math.atan2(strafe, drive)+Math.toRadians(-botHeading)), turn);
+    }
+
+    public void driveBot(double forward, double strafe, double rotate) {
+        FrontL.setPower((forward + strafe + rotate));
+        BackL.setPower((forward - strafe + rotate));
+        FrontR.setPower((forward + strafe - rotate));
+        BackR.setPower((forward - strafe - rotate));
+    }
+
+    public void stopBot(){
+        FrontL.setPower(0);
+        FrontR.setPower(0);
+        BackL.setPower(0);
+        BackR.setPower(0);
     }
 }

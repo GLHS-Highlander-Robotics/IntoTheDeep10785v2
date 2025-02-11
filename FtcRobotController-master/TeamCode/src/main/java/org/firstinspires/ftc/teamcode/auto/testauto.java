@@ -25,7 +25,7 @@ public class testauto extends LinearOpMode{
         }
         waitForStart();
         while(opModeIsActive()){
-            telemetry.addData("x", find.getPosition().x);
+            telemetry.addData("x", find.findPosition().x);
             telemetry.update();
         }
     }

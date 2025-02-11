@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.subsystem.constants.constants;
 
 public class localization {
     //Components
-    SparkFunOTOS myOtos;
+    public SparkFunOTOS myOtos;
     constants consts;
 
     //Variables
@@ -105,7 +105,7 @@ public class localization {
         telemetry.addLine(String.format("OTOS Firmware Version: v%d.%d", fwVersion.major, fwVersion.minor));
         telemetry.update();
     }
-    public SparkFunOTOS.Pose2D getPosition(){
+    public SparkFunOTOS.Pose2D findPosition(){
         return myOtos.getPosition();
     }
 }

@@ -23,7 +23,7 @@ public class angular_otos extends LinearOpMode {
         }
         waitForStart();
         while (opModeIsActive()){
-            telemetry.addData("rotation", find.getPosition().h);
+            telemetry.addData("rotation", find.myOtos.getPosition().h);
             telemetry.update();
         }
     }
