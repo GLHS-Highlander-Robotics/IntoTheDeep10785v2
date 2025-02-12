@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import org.firstinspires.ftc.teamcode.subsystem.intake.intake;
 
 @Config
-@TeleOp(name = "Intake Lab")
+@TeleOp(name = "Intake Lab", group = "Laboratory")
 public class intake_lab extends OpMode {
 
     intake in;

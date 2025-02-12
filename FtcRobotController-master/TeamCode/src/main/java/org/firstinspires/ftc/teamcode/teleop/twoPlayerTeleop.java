@@ -52,23 +52,19 @@ public class twoPlayerTeleop extends OpMode {
             turn = gamepad1.right_stick_x;
             if(gamepad1.dpad_up || gamepad1.dpad_down || gamepad1.dpad_left || gamepad1.dpad_right){
                 if (gamepad1.dpad_up) {
-                    forward = -consts.dpadSpeed;
+                    forward = consts.dpadSpeed_Drive;
                 }
                 if (gamepad1.dpad_down) {
-                    forward = consts.dpadSpeed;
+                    forward = -consts.dpadSpeed_Drive;
                 }
                 if (gamepad1.dpad_left) {
-                    strafe = -consts.dpadSpeed;
+                    strafe = consts.dpadSpeed_Drive;
                 }
                 if (gamepad1.dpad_right) {
-                    strafe = consts.dpadSpeed;
+                    strafe = -consts.dpadSpeed_Drive;
                 }
             }
-            if(consts.useFieldCentric) {
-                drive.FieldCentricDrive(forward, strafe, turn, find.myOtos.getPosition().h);
-            } else {
-                drive.RobotCentricDrive(forward, strafe, turn);
-            }
+            drive.FieldCentricDrive(forward, strafe, turn, find.myOtos.getPosition().h);
             telemetry.addData("turn", turn);
         }
         else if (gamepad1.dpad_up || gamepad1.dpad_down || gamepad1.dpad_left || gamepad1.dpad_right) {
@@ -76,22 +72,19 @@ public class twoPlayerTeleop extends OpMode {
             strafe = 0;
             turn = 0;
             if (gamepad1.dpad_up) {
-                forward = -0.3;
+                forward = consts.dpadSpeed_Drive;
             }
             if (gamepad1.dpad_down) {
-                forward = 0.3;
+                forward = -consts.dpadSpeed_Drive;
             }
             if (gamepad1.dpad_left) {
-                strafe = -0.3;
+                strafe = consts.dpadSpeed_Drive;
             }
             if (gamepad1.dpad_right) {
-                strafe = 0.3;
+                strafe = -consts.dpadSpeed_Drive;
             }
-            if(consts.useFieldCentric) {
-                drive.FieldCentricDrive(forward, strafe, turn, find.myOtos.getPosition().h);
-            } else {
-                drive.RobotCentricDrive(forward, strafe, turn);
-            }
+            drive.FieldCentricDrive(forward, strafe, turn, find.myOtos.getPosition().h);
+            telemetry.addData("turn", turn);
         }
         else drive.stopBot();
     }

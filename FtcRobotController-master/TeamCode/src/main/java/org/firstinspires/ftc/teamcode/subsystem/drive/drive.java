@@ -43,9 +43,9 @@ public class drive {
         integral += error;
         double derivative = error - lastErrorHeading;
         if(error > Math.PI){
-            error -= Math.PI*2;
+            error -= Math.PI * 2;
         } else if(error < -Math.PI){
-            error += Math.PI*2;
+            error += Math.PI * 2;
         }
         double correction = (error * kp) + (integral * ki) + (derivative * kd);
         lastErrorHeading = error;
@@ -54,8 +54,8 @@ public class drive {
 
     public double pdfTranslate(double kp, double kd, double kf, double error){
         double derivative = error - lastErrorDrive;
-        double correction = (error*kp) + (derivative * kd);
-        correction += Math.signum(error)*kf;
+        double correction = (error * kp) + (derivative * kd);
+        correction += Math.signum(error) * kf;
         lastErrorDrive = error;
         return correction;
     }
@@ -65,24 +65,25 @@ public class drive {
     }
 
     public void gotoPos(double targetX, double targetY, double targetH, double speed, SparkFunOTOS.Pose2D curPos){
-        Vector2D drive = new Vector2D(0, targetX - curPos.x, targetY -curPos.y);
+
+        Vector2D drive = new Vector2D(0, targetX - curPos.x, targetY - curPos.y);
         Vector2D rotatedDrive = drive.rotateVector(curPos.h);
 
         double inputTurn = pidHeading(targetH, hP, hI, hD, curPos.h);
         double driveCorrection = pdfTranslate(dP, dD, 0, rotatedDrive.y);
         double strafeCorrection = pdfTranslate(sP, sD, 0, rotatedDrive.x);
 
-        FrontL.setPower((driveCorrection+strafeCorrection+inputTurn)*speed);
-        FrontR.setPower((driveCorrection-strafeCorrection-inputTurn)*speed);
-        BackL.setPower((driveCorrection-strafeCorrection+inputTurn)*speed);
-        BackR.setPower((driveCorrection+strafeCorrection-inputTurn)*speed);
+        FrontL.setPower((driveCorrection + strafeCorrection + inputTurn) * speed);
+        FrontR.setPower((driveCorrection - strafeCorrection - inputTurn) * speed);
+        BackL.setPower((driveCorrection - strafeCorrection + inputTurn) * speed);
+        BackR.setPower((driveCorrection + strafeCorrection - inputTurn) * speed);
     }
 
     public void RobotCentricDrive(double drive, double strafe, double turn){
         double max = Math.max(Math.abs(drive) + Math.abs(strafe) + Math.abs(turn), 1); // Keeps bounds
         FrontL.setPower((drive - strafe - turn) / max);
-        BackL.setPower((drive + strafe - turn) / max);
         FrontR.setPower((drive + strafe + turn) / max);
+        BackL.setPower((drive + strafe - turn) / max);
         BackR.setPower((drive - strafe + turn) / max);
     }
 

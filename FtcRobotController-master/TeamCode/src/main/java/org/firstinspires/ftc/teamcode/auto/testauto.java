@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.subsystem.localization.localization_SparkFunOTOS;
 
 @Config
-@Autonomous(name = "Test Auto")
+@Autonomous(name = "Test Auto", group = "Test")
 public class testauto extends LinearOpMode{
     @Override
     public void runOpMode() throws InterruptedException {
@@ -26,6 +26,8 @@ public class testauto extends LinearOpMode{
         waitForStart();
         while(opModeIsActive()){
             telemetry.addData("x", find.findPosition().x);
+            telemetry.addData("y", find.findPosition().y);
+            telemetry.addData("h", find.findPosition().h);
             telemetry.update();
         }
     }

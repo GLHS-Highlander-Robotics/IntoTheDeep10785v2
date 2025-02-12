@@ -13,9 +13,7 @@ public class constants {
     public double sP, sD, sF; // Strafe PDF
     public double gp1dead; // Gamepad 1 Deadzones
     public double gp2dead; // Gamepad 2 Deadzones
-    public boolean useFieldCentric; // Controls if using field or robot centric drive
-
-    public double dpadSpeed;
+    public double dpadSpeed_Drive;
     public int outMotorTolerances;
     public double currentDrawThreshold;
 
@@ -67,9 +65,7 @@ public class constants {
 
         gp1dead = 0.3;
 
-        useFieldCentric = false;
-
-        dpadSpeed = 0.3;
+        dpadSpeed_Drive = 0.3;
 
         outMotorTolerances = 3;
 

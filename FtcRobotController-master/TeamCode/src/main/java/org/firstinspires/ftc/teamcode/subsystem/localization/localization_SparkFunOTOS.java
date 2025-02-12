@@ -32,10 +32,7 @@ public class localization_SparkFunOTOS {
         // Can be either meters or inches for linear, and radians or degrees for angular.
         // Units default to inches and degrees.
         // Setting is not persisted in the sensor, so needs to set at the start of all OpModes if using the non-default value.
-
-        // myOtos.setLinearUnit(DistanceUnit.METER);
         myOtos.setLinearUnit(DistanceUnit.INCH);
-        // myOtos.setAngularUnit(AngleUnit.RADIANS);
         myOtos.setAngularUnit(AngleUnit.DEGREES);
 
         // If sensor is mounted to a robot without being centered, offset can be specified for the sensor to center it.
@@ -60,15 +57,15 @@ public class localization_SparkFunOTOS {
 
         // The IMU on the OTOS includes a gyroscope and accelerometer, which could have an offset.
         // Note that as of firmware version 1.0, the calibration will be lost after a power cycle; the OTOS performs a quick calibration when it powers up, but it is recommended to perform a more thorough calibration at the start of all your OpModes.
-        // Note that the sensor must  be completely stationary and flat during calibration! When calling calibrateImu(), you can specify the number of samples to take and whether to wait until the calibration is complete.
+        // Note that the sensor must be completely stationary and flat during calibration! When calling calibrateImu(), you can specify the number of samples to take and whether to wait until the calibration is complete.
         // If no parameters are provided, it will take 255 samples and wait until done; each sample takes about 2.4ms, so about 612ms total.
         myOtos.calibrateImu();
 
         // Reset the tracking algorithm - this resets the position to the origin, but can also be used to recover from certain rare tracking errors
         myOtos.resetTracking();
 
-        // After resetting the tracking, the OTOS will report that the robot is at the origin.
-        // If your robot does not start at the origin, or you have another source of location information (eg. vision odometry), you can set the OTOS location to match and it will continue to track from there.
+        // After resetting tracking, OTOS will report that robot is at origin.
+        // If robot does not start at origin, or another source of location information (eg. vision odometry) is available, the OTOS location can be set to match and it will continue to track from there.
         SparkFunOTOS.Pose2D currentPosition = new SparkFunOTOS.Pose2D(0, 0, 0);
         myOtos.setPosition(currentPosition);
 
