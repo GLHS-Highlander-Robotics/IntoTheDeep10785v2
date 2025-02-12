@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.tuning;
 
-import org.firstinspires.ftc.teamcode.subsystem.localization.localization;
+import org.firstinspires.ftc.teamcode.subsystem.localization.localization_SparkFunOTOS;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
@@ -13,8 +13,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class linear_otos extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException{
-        localization find;
-        find = new localization(hardwareMap);
+        localization_SparkFunOTOS find;
+        find = new localization_SparkFunOTOS(hardwareMap);
 
         while(!isStarted()){
             telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());

@@ -7,7 +7,7 @@ import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.subsystem.localization.localization;
+import org.firstinspires.ftc.teamcode.subsystem.localization.localization_SparkFunOTOS;
 
 @Config
 @Autonomous(name = "Test Auto")
@@ -15,9 +15,9 @@ public class testauto extends LinearOpMode{
     @Override
     public void runOpMode() throws InterruptedException {
         //Parts
-        localization find;
+        localization_SparkFunOTOS find;
 
-        find = new localization(hardwareMap);
+        find = new localization_SparkFunOTOS(hardwareMap);
 
         while(!isStarted()){
             telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
