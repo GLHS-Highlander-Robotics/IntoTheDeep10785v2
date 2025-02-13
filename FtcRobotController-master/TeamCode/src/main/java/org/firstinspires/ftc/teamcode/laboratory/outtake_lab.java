@@ -24,7 +24,9 @@ public class outtake_lab extends OpMode {
     @Override
     public void loop(){
         double power = gamepad2.left_stick_y;
-        if(Math.abs(power) <= 0.1){power = 0;}
+        if(Math.abs(power) <= 0.1){
+            power = 0;
+        }
         out.setMotorPowers(power);
         if(gamepad2.a && !a){
             switch (state1) {

@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.subsystem.drive.drive;
 import org.firstinspires.ftc.teamcode.subsystem.localization.localization_SparkFunOTOS;
 import org.firstinspires.ftc.teamcode.subsystem.intake.intake;
+import org.firstinspires.ftc.teamcode.subsystem.outtake.outtake;
 import org.firstinspires.ftc.teamcode.subsystem.constants.constants;
 import org.firstinspires.ftc.teamcode.subsystem.calculations.Basic;
 
@@ -16,14 +17,16 @@ import org.firstinspires.ftc.teamcode.subsystem.calculations.Basic;
 @TeleOp(name = "Two Player Teleop >:)")
 public class twoPlayerTeleop extends OpMode {
 
-    //Subsystems
+    // Subsystems
     drive drive;
     localization_SparkFunOTOS find;
     intake intake;
+    outtake outtake;
 
-    //Constants
+    // Constants
     constants consts;
 
+    // Math
     Basic basic;
 
     @Override
@@ -31,6 +34,8 @@ public class twoPlayerTeleop extends OpMode {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         drive = new drive(hardwareMap);
         find = new localization_SparkFunOTOS(hardwareMap);
+        intake = new intake(hardwareMap);
+        outtake = new outtake(hardwareMap);
         consts = new constants();
     }
 
@@ -87,6 +92,14 @@ public class twoPlayerTeleop extends OpMode {
             telemetry.addData("turn", turn);
         }
         else drive.stopBot();
+    }
+
+    public void updateIntake(){
+
+    }
+
+    public void updateOuttake(){
+
     }
 
     public void getTelemetry(){

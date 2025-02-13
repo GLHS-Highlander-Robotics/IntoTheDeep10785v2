@@ -12,24 +12,24 @@ import org.firstinspires.ftc.teamcode.subsystem.intake.intake;
 public class intake_lab extends OpMode {
 
     intake in;
-    boolean rt;
+    boolean rtrigger;
 
     @Override
     public void init(){
         in = new intake(hardwareMap);
         in.left_slide.setDirection(DcMotorSimple.Direction.REVERSE);
-        rt = false;
+        rtrigger = false;
     }
     @Override
     public void loop(){
         double power = gamepad1.left_stick_y;
         if(Math.abs(power) <= 0.1){power = 0;}
         in.setMotorPowers(power);
-        if(gamepad1.right_trigger>=0.3 && !rt){
-            rt = true;
+        if(gamepad1.right_trigger >= 0.3 && !rtrigger){
+            rtrigger = true;
             in.switchState();
         }
-        else if (gamepad1.right_trigger < 0.3) {rt = false;}
+        else if (gamepad1.right_trigger < 0.3) {rtrigger = false;}
         in.setServos();
         in.setRollServo(gamepad1.right_stick_y);
     }

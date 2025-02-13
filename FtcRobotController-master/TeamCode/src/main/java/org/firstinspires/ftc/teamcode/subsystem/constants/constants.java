@@ -65,6 +65,8 @@ public class constants {
 
         gp1dead = 0.3;
 
+        gp2dead = 0.1;
+
         dpadSpeed_Drive = 0.3;
 
         outMotorTolerances = 3;

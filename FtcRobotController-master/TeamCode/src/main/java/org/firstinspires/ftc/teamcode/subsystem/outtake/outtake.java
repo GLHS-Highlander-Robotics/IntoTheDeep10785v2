@@ -12,6 +12,8 @@ public class outtake {
     public Servo leftServo, rightServo, clawServo;
     private constants consts;
 
+    private double lastError;
+
     public outtake(HardwareMap hardwareMap){
         consts = new constants();
         leftMotor = hardwareMap.get(DcMotorEx.class, consts.outtake_leftslide_hm);
@@ -21,23 +23,28 @@ public class outtake {
         clawServo = hardwareMap.get(Servo.class, consts.outtake_claw_hm);
     }
 
-    public void setLiftPosition(double ticks){
-
+    public void setLiftPosition(double ticks, int target){
+        double error = (target - leftMotor.getCurrentPosition());
+        double derivative = error - lastError;
+        leftMotor.setPower((error * consts.oP) + (derivative * consts.oD));
+        rightMotor.setPower((error * consts.oP) + (derivative * consts.oD));
+        lastError = error;
     }
 
     public void setMotorPowers(double powers){
+        double powersignum = Math.signum(powers);
         if(Math.signum((double) (leftMotor.getCurrentPosition() - rightMotor.getCurrentPosition())) > consts.outMotorTolerances){
             if(leftMotor.getCurrentPosition() > rightMotor.getCurrentPosition()){
                 if(powers > 0){
                     rightMotor.setPower(Math.signum(powers));
                 }
                 else {
-                    leftMotor.setPower(-1*Math.signum(powers));
+                    leftMotor.setPower(-1 * Math.signum(powers));
                 }
             }
             else{
                 if(powers > 0){
-                    rightMotor.setPower(-1*Math.signum(powers));
+                    rightMotor.setPower(-1 * Math.signum(powers));
                 }
                 else {
                     leftMotor.setPower(Math.signum(powers));
