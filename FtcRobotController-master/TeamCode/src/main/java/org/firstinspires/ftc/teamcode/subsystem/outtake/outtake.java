@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.subsystem.outtake;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -19,10 +21,31 @@ public class outtake {
         leftServo = hardwareMap.get(Servo.class, consts.outtake_left_hm);
         rightServo = hardwareMap.get(Servo.class, consts.outtake_right_hm);
         clawServo = hardwareMap.get(Servo.class, consts.outtake_claw_hm);
+
+        leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        clawServo.setPosition(1);
+        leftServo.setPosition(0);
+        rightServo.setPosition(1);
     }
 
     public void setLiftPosition(double ticks){
+        rightMotor.setTargetPosition((int)ticks);
+        leftMotor.setTargetPosition((int)ticks);
+    }
 
+    public void setArmPosition(double pos){
+        leftServo.setPosition(pos);
+        rightServo.setPosition(1 - pos);
     }
 
     public void setMotorPowers(double powers){
@@ -32,12 +55,12 @@ public class outtake {
                     rightMotor.setPower(Math.signum(powers));
                 }
                 else {
-                    leftMotor.setPower(-1*Math.signum(powers));
+                    leftMotor.setPower(-1 * Math.signum(powers));
                 }
             }
             else{
                 if(powers > 0){
-                    rightMotor.setPower(-1*Math.signum(powers));
+                    rightMotor.setPower(-1 * Math.signum(powers));
                 }
                 else {
                     leftMotor.setPower(Math.signum(powers));

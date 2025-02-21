@@ -1,23 +1,22 @@
 package org.firstinspires.ftc.teamcode.subsystem.calculations;
 
 public class Vector2D {
-    public double x, y, mag, dir;
+    public double x, y;
     // **NOTE THAT 0 IS STRAIGHT AHEAD!!!!!!!!!!!**
-    public Vector2D(double magnitude, double direction){
-        mag = magnitude;
-        dir = direction;
-        x = Math.sin(direction);
-        y = Math.cos(direction);
-    }
 
-    public Vector2D(int xy, double x_i, double y_i){
+    public Vector2D(double x_i, double y_i){
         x = x_i;
         y  = y_i;
-        mag = Math.sqrt(x_i*x_i+y_i*y_i);
-        dir = Math.atan2(x_i,y_i);
     }
 
-    public Vector2D rotateVector (double angle){
-        return new Vector2D(mag, dir + angle);
+    public Vector2D(double unitAngleinRad){
+        x = Math.cos(unitAngleinRad);
+        y  = Math.sin(unitAngleinRad);
     }
+
+    public void rotateVector (double angleInRad){
+        x = Math.cos(angleInRad)*x-Math.sin(angleInRad)*y;
+        y = Math.sin(angleInRad)*x+Math.cos(angleInRad)*y;
+    }
+
 }

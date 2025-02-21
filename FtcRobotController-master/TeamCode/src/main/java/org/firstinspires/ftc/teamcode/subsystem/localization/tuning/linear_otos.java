@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.tuning;
+package org.firstinspires.ftc.teamcode.subsystem.localization.tuning;
 
 import org.firstinspires.ftc.teamcode.subsystem.localization.localization;
 
@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @Config
-@TeleOp(name = "OTOS Linear Tuning (120\")")
+@TeleOp(name = "OTOS testing")
 public class linear_otos extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException{
@@ -22,7 +22,9 @@ public class linear_otos extends LinearOpMode {
         }
         waitForStart();
         while (opModeIsActive()){
-            telemetry.addData("movement", find.myOtos.getPosition().y);
+            telemetry.addData("x movement", find.myOtos.getPosition().y);
+            telemetry.addData("y movement", find.myOtos.getPosition().y);
+            telemetry.addData("h movement", find.myOtos.getPosition().y);
             telemetry.update();
         }
     }

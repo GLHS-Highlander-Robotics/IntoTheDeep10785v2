@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.subsystem.localization;
 
 import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -13,6 +14,7 @@ public class localization {
     //Components
     public SparkFunOTOS myOtos;
     constants consts;
+    public IMU imu;
 
     //Variables
 
@@ -21,6 +23,9 @@ public class localization {
 
         consts = new constants();
         myOtos = hardwareMap.get(SparkFunOTOS.class, consts.otos_hm);
+        imu = hardwareMap.get(IMU.class, consts.imu_hm);
+        imu.initialize(consts.params);
+        resetHeading();
 
     }
 
@@ -107,5 +112,10 @@ public class localization {
     }
     public SparkFunOTOS.Pose2D findPosition(){
         return myOtos.getPosition();
+    }
+
+    public void resetHeading(){
+        myOtos.setPosition(new SparkFunOTOS.Pose2D(myOtos.getPosition().x, myOtos.getPosition().y, 0));
+        imu.resetYaw();
     }
 }

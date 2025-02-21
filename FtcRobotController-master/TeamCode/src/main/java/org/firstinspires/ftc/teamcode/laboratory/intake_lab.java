@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 import org.firstinspires.ftc.teamcode.subsystem.intake.intake;
 
 @Config
@@ -17,20 +18,24 @@ public class intake_lab extends OpMode {
     @Override
     public void init(){
         in = new intake(hardwareMap);
-        in.left_slide.setDirection(DcMotorSimple.Direction.REVERSE);
         rt = false;
     }
     @Override
     public void loop(){
-        double power = gamepad1.left_stick_y;
+        double power = gamepad2.left_stick_y;
         if(Math.abs(power) <= 0.1){power = 0;}
         in.setMotorPowers(power);
-        if(gamepad1.right_trigger>=0.3 && !rt){
+        if(gamepad2.right_trigger>=0.3 && !rt){
             rt = true;
             in.switchState();
         }
-        else if (gamepad1.right_trigger < 0.3) {rt = false;}
+        else if (gamepad2.right_trigger < 0.3) {rt = false;}
         in.setServos();
-        in.setRollServo(gamepad1.right_stick_y);
+        in.setRollServo(gamepad2.right_stick_y);
+        telemetry.addData("Left Motor Encoder Position", in.left_slide.getCurrentPosition());
+        telemetry.addData("Left Motor Current Draw", in.left_slide.getCurrent(CurrentUnit.MILLIAMPS));
+        telemetry.addData("Right Motor Encoder Position", in.right_slide.getCurrentPosition());
+        telemetry.addData("Right Motor Encoder Position", in.right_slide.getCurrent(CurrentUnit.MILLIAMPS));
+        telemetry.update();
     }
 }

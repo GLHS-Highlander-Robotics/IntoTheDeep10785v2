@@ -1,9 +1,15 @@
 package org.firstinspires.ftc.teamcode.subsystem.constants;
 
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.hardware.IMU;
+
+import org.firstinspires.ftc.ftccommon.internal.manualcontrol.parameters.ImuParameters;
+
 public class constants {
     //HardwareMap Definitions
     public String intake_roller_hm, intake_right_hm, intake_left_hm, otos_hm, fl_hm, fr_hm, bl_hm, br_hm, intake_rightslide_hm, intake_leftslide_hm, outtake_rightslide_hm, outtake_leftslide_hm, outtake_claw_hm, outtake_right_hm, outtake_left_hm;
     public double linearOTOSconst, angularOTOSconst;
+    public String imu_hm;
     public double REV_TicksPerRevolution, GoBilda_TicksPerRevolution;
     public double iP, iD; // Input PD
     public double oP, oD; // Output PD
@@ -13,6 +19,7 @@ public class constants {
     public double gp1dead; //Gamepad 1 Deadzones
     public int outMotorTolerances;
     public double currentDrawThreshold;
+    public IMU.Parameters params;
 
     public constants(){
 
@@ -24,7 +31,9 @@ public class constants {
 
         otos_hm = "myOTOS"; //PIN I2C0-CH
 
-        linearOTOSconst = 1.0771;
+        imu_hm = "imu";
+
+        linearOTOSconst = 1.3044;
 
         angularOTOSconst = 1.0005;
 
@@ -65,5 +74,23 @@ public class constants {
         outMotorTolerances = 3;
 
         currentDrawThreshold = 1000;
+
+        params = new IMU.Parameters(new RevHubOrientationOnRobot(
+                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
+                RevHubOrientationOnRobot.UsbFacingDirection.UP));
+
+        hP = 0.02;
+
+        hI = 0.003;
+
+        hD = 0.05;
+
+        dP = 0.1;
+
+        dD = 0.5;
+
+        sP = 0.2;
+
+        sD = 0.2;
     }
 }
