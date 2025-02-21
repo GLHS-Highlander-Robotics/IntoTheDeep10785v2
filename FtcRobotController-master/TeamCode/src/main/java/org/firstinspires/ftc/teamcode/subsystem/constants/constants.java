@@ -2,9 +2,12 @@ package org.firstinspires.ftc.teamcode.subsystem.constants;
 
 public class constants {
     //HardwareMap Definitions
-    public String intake_roller_hm, intake_right_hm, intake_left_hm, otos_hm,  intake_rightslide_hm, intake_leftslide_hm, outtake_rightslide_hm, outtake_leftslide_hm, outtake_claw_hm, outtake_right_hm, outtake_left_hm;
-    public String fl_hm, fr_hm, bl_hm, br_hm;
-    public double linearOTOSconst, angularOTOSconst;
+    // hm stands for hardware map
+    public String intake_roller_hm, intake_right_hm, intake_left_hm, intake_rightslide_hm, intake_leftslide_hm; // Intake
+    public String outtake_rightslide_hm, outtake_leftslide_hm, outtake_claw_hm, outtake_right_hm, outtake_left_hm; // Outtake/Lift
+    public String otos_hm, dSensor1_hm, dSensor2_hm; // Odometry, distance sensors
+    public String fl_hm, fr_hm, bl_hm, br_hm; // Drive
+    public double linearOTOSconst, angularOTOSconst; // Constants for Odometry
     public double REV_TicksPerRevolution, GoBilda_TicksPerRevolution;
     public double iP, iD; // Input PD
     public double oP, oD; // Output PD
@@ -52,6 +55,10 @@ public class constants {
         outtake_left_hm = "outtake_lt";
 
         outtake_claw_hm = "outtake_claw";
+
+        dSensor1_hm = "distance_sensor1";
+
+        dSensor2_hm = "distance_sensor2";
 
         REV_TicksPerRevolution = 288;
 
