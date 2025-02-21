@@ -30,10 +30,7 @@ public class wheel_tuner extends OpMode {
             drive.BackR.setPower(0.2);
         }
         else{
-            drive.FrontL.setPower(0);
-            drive.FrontR.setPower(0);
-            drive.BackL.setPower(0);
-            drive.BackR.setPower(0);
+            drive.stopBot();
         }
     }
 }
