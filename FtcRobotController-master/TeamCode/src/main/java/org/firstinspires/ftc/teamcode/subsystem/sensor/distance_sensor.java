@@ -13,8 +13,8 @@ public class distance_sensor {
     public distance_sensor(HardwareMap hardwareMap) {
         consts = new constants();
 
-        d_Sensor1 = hardwareMap.get(DistanceSensor.class, consts.dSensor1_hm);
-        d_Sensor2 = hardwareMap.get(DistanceSensor.class, consts.dSensor2_hm);
+        //d_Sensor1 = hardwareMap.get(DistanceSensor.class, consts.dSensor1_hm);
+        //d_Sensor2 = hardwareMap.get(DistanceSensor.class, consts.dSensor2_hm);
     }
 
     public double getDistance(DistanceSensor d_sensor){
