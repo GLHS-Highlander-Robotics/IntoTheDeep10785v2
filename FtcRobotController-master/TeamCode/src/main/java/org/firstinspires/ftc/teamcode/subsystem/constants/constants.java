@@ -8,6 +8,7 @@ import org.firstinspires.ftc.ftccommon.internal.manualcontrol.parameters.ImuPara
 public class constants {
     //HardwareMap Definitions
     public String intake_roller_hm, intake_right_hm, intake_left_hm, otos_hm, fl_hm, fr_hm, bl_hm, br_hm, intake_rightslide_hm, intake_leftslide_hm, outtake_rightslide_hm, outtake_leftslide_hm, outtake_claw_hm, outtake_right_hm, outtake_left_hm;
+    public String cSensor_1_hm;
     public double linearOTOSconst, angularOTOSconst;
     public String imu_hm;
     public double REV_TicksPerRevolution, GoBilda_TicksPerRevolution;
