@@ -25,7 +25,7 @@ public class outtake_lab extends OpMode {
     }
     @Override
     public void loop(){
-        double power = -gamepad2.left_stick_y;
+        double power = -0.3*Math.signum(gamepad2.left_stick_y);
         if(Math.abs(power) <= 0.1 || (Math.max(out.leftMotor.getCurrentPosition(), out.rightMotor.getCurrentPosition())>2000) || (Math.min(out.leftMotor.getCurrentPosition(), out.rightMotor.getCurrentPosition())< -3) || (Math.max(out.leftMotor.getCurrent(CurrentUnit.MILLIAMPS), out.rightMotor.getCurrent(CurrentUnit.MILLIAMPS))>5000)){
             power = 0;
         }

@@ -22,7 +22,7 @@ public class intake_lab extends OpMode {
     }
     @Override
     public void loop(){
-        double power = gamepad2.left_stick_y;
+        double power = -gamepad2.left_stick_y;
         if(Math.abs(power) <= 0.1){power = 0;}
         in.setMotorPowers(power);
         if(gamepad2.right_trigger>=0.3 && !rt){

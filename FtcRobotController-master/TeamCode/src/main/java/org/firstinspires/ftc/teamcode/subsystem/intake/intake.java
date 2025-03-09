@@ -36,7 +36,12 @@ public class intake{
         setServos();
     }
 
-    public void setLiftPosition(double ticks){
+    public void setMotorState(DcMotor.RunMode runMode){
+        left_slide.setMode(runMode);
+        right_slide.setMode(runMode);
+    }
+
+    public void setSlidePosition(double ticks){
         right_slide.setTargetPosition((int)ticks);
         left_slide.setTargetPosition((int)ticks);
     }
@@ -66,8 +71,8 @@ public class intake{
     public void setServos(){
         switch (state){
             case IN:
-                leftServo.setPosition(0.1);
-                rightServo.setPosition(0.9);
+                leftServo.setPosition(0);
+                rightServo.setPosition(1);
                 break;
             case UP:
                 leftServo.setPosition(0.5);
@@ -101,7 +106,11 @@ public class intake{
     }
 
     public void setMotorPowers(double powers){
-        if(Math.signum((double) (left_slide.getCurrentPosition() - right_slide.getCurrentPosition())) > consts.outMotorTolerances){
+        if(((Math.max(left_slide.getCurrentPosition(), right_slide.getCurrentPosition())) > consts.intakeLimit && powers >= 0) || (Math.max(left_slide.getCurrentPosition(), right_slide.getCurrentPosition())<=-3) && powers<=0){
+            right_slide.setPower(0);
+            left_slide.setPower(0);
+        }
+        else if(Math.signum((double) (left_slide.getCurrentPosition() - right_slide.getCurrentPosition())) > consts.outMotorTolerances){
             if(left_slide.getCurrentPosition() > right_slide.getCurrentPosition()){
                 if(powers > 0){
                     right_slide.setPower(Math.signum(powers));

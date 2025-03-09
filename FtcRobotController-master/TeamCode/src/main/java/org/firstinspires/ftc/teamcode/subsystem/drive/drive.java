@@ -133,6 +133,45 @@ public class drive {
     }
 
 
+    public void FieldCentricDrive(double drive, double strafe, double turn, SparkFunOTOS OTOS){
+        // Gets current bot heading based on angle in RADIANS from field orientation
+        double botHeading = Math.toRadians(OTOS.getPosition().h);
+
+        // Rotate the movement direction counter to the bot's rotation
+        // Used to interpret
+        // To calculate y rotation,
+        // To calculate x rotation,
+        double rotY = strafe * Math.sin(-botHeading) - drive * Math.cos(-botHeading);
+        double rotX = strafe * Math.cos(-botHeading) + drive * Math.sin(-botHeading);
+
+
+        // Denominator is the largest motor power (absolute value) or 1
+        // This ensures all the powers maintain the same ratio,
+        // but only if at least one is out of the range [-1, 1]
+        double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(turn), 1);
+
+        driveBot(rotY, rotX, turn, denominator);
+    }
+    public void FieldCentricDrive(double drive, double strafe, double turn, SparkFunOTOS OTOS, double maxSpeed){
+        // Gets current bot heading based on angle in RADIANS from field orientation
+        double botHeading = Math.toRadians(OTOS.getPosition().h);
+
+        // Rotate the movement direction counter to the bot's rotation
+        // Used to interpret
+        // To calculate y rotation,
+        // To calculate x rotation,
+        double rotY = strafe * Math.sin(-botHeading) - drive * Math.cos(-botHeading);
+        double rotX = strafe * Math.cos(-botHeading) + drive * Math.sin(-botHeading);
+
+
+        // Denominator is the largest motor power (absolute value) or 1
+        // This ensures all the powers maintain the same ratio,
+        // but only if at least one is out of the range [-1, 1]
+        double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(turn), 1);
+
+        driveBot(rotY, rotX, turn, denominator/maxSpeed);
+    }
+
     public void driveBot(double forward, double strafe, double rotate, double limiter) {
         FrontL.setPower((forward + strafe + rotate)/limiter);
         BackL.setPower((forward - strafe + rotate)/limiter);

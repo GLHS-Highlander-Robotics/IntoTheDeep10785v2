@@ -48,7 +48,16 @@ public class outtake {
         rightServo.setPosition(1 - pos);
     }
 
+    public void setMotorState(DcMotor.RunMode runMode){
+        leftMotor.setMode(runMode);
+        rightMotor.setMode(runMode);
+    }
+
     public void setMotorPowers(double powers){
+        if(((Math.max(leftMotor.getCurrentPosition(), rightMotor.getCurrentPosition())) > consts.outtakeLimit && powers >= 0) || ((Math.max(leftMotor.getCurrentPosition(), rightMotor.getCurrentPosition()))<=-3)&&powers<=0){
+            rightMotor.setPower(0);
+            leftMotor.setPower(0);
+        }
         if(Math.signum((double) (leftMotor.getCurrentPosition() - rightMotor.getCurrentPosition())) > consts.outMotorTolerances){
             if(leftMotor.getCurrentPosition() > rightMotor.getCurrentPosition()){
                 if(powers > 0){

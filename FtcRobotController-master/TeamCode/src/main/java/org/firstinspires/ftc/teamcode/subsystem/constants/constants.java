@@ -20,8 +20,13 @@ public class constants {
     public int outMotorTolerances;
     public double currentDrawThreshold;
     public IMU.Parameters params;
+    public int intakeLimit, outtakeLimit;
 
     public constants(){
+
+        intakeLimit = 1325;
+
+        outtakeLimit = 2000;
 
         intake_left_hm = "intake_lt"; //PIN S5-CH
 
