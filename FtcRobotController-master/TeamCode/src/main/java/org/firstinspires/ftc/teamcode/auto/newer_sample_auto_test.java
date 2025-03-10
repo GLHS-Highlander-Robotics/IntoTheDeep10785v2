@@ -21,7 +21,7 @@ import org.firstinspires.ftc.teamcode.subsystem.outtake.outtake;
 
 @Config
 @Autonomous(name="Working Sample Auto")
-public class newer_sample_auto extends OpMode{
+public class newer_sample_auto_test extends OpMode{
 
     intake in;
 
@@ -44,9 +44,9 @@ public class newer_sample_auto extends OpMode{
 
     private final Pose ctrl23_1 = new Pose(15, 123, 0);
 
-    private final Pose right_sample = new Pose(25, 124, Math.toRadians(0));
+    private final Pose right_sample = new Pose(26, 124, Math.toRadians(0));
 
-    private final Pose mid_sample = new Pose(25, 134, Math.toRadians(5));
+    private final Pose mid_sample = new Pose(25.5, 134, Math.toRadians(5));
 
     private final Pose left_sample = new Pose(30, 132, Math.toRadians(45));
 
@@ -118,6 +118,7 @@ public class newer_sample_auto extends OpMode{
                         in.setServos();
                     }
                     else if(waitTimer.milliseconds() > 1500 && waitTimer.milliseconds()<=2000){
+                        out.clawServo.setPosition(1);
                         out.setArmPosition(1);
                     }
                     else{
@@ -133,32 +134,27 @@ public class newer_sample_auto extends OpMode{
 
             case 2: // Wait until the robot is near the first sample pickup position
                 if (!follower.isBusy()) {
-                    if(waitTimer.milliseconds()>=50 && waitTimer.milliseconds()<=2500){
+                    if(waitTimer.milliseconds()<1000 ){
                         in.setState(intake.SERVO_STATE.IN);
                         in.setServos();
-                        in.setSlidePosition(0);
-                        out.setLiftPosition(0);
-                        out.setArmPosition(0);
                     }
-                    else if(waitTimer.milliseconds()>2500 && waitTimer.milliseconds()<=3500){
+                    else if(waitTimer.milliseconds()>1000&&waitTimer.milliseconds()<=1500){
                         in.setRollServo(-1);
                         out.clawServo.setPosition(0);
                     }
-                    else if(waitTimer.milliseconds()>3500 && waitTimer.milliseconds()<4000){
-                        out.clawServo.setPosition(1);
-                    }
-                    else if(waitTimer.milliseconds()>=4000) {
-                        follower.setMaxPower(0.4);
-                        out.setLiftPosition(2000);
-                        out.setArmPosition(.9);
-                        follower.followPath(placeClose, true);
-                        setPathState(3);
-                    }
-                }
-                else{
-                    waitTimer.reset();
+                    else if(waitTimer.milliseconds()>1500&&waitTimer.milliseconds()<=2000){
 
+                    }
+                    else if(waitTimer.milliseconds()>2000) {
+                        out.setLiftPosition(2000);
+                        out.setArmPosition(0.9);
+                        follower.setMaxPower(0.4);
+                        follower.followPath(placeClose, true);
+                        in.setServos();
+                        setPathState(7);
+                    }
                 }
+                else waitTimer.reset();
                 break;
 
             case 3: // Wait until the robot returns to the scoring position
@@ -171,6 +167,7 @@ public class newer_sample_auto extends OpMode{
                         in.setServos();
                     }
                     else if(waitTimer.milliseconds()>=1500 && waitTimer.milliseconds()<=2000){
+                        out.clawServo.setPosition(1);
                         out.setArmPosition(1);
                     }
                     else{
@@ -199,7 +196,7 @@ public class newer_sample_auto extends OpMode{
                         out.clawServo.setPosition(0);
                     }
                     else if(waitTimer.milliseconds()>3500 && waitTimer.milliseconds()<4000){
-                        out.clawServo.setPosition(1);
+
                     }
                     else if(waitTimer.milliseconds()>=4000) {
                         out.setLiftPosition(2000);
@@ -221,6 +218,7 @@ public class newer_sample_auto extends OpMode{
                         out.clawServo.setPosition(0);
                     }
                     else if(waitTimer.milliseconds()>1000 && waitTimer.milliseconds()<=1500){
+                        out.clawServo.setPosition(1);
                         out.setArmPosition(1);
                     }
                     if(waitTimer.milliseconds()>1500) {
@@ -249,7 +247,6 @@ public class newer_sample_auto extends OpMode{
                         out.clawServo.setPosition(0);
                     }
                     else if(waitTimer.milliseconds()>1500&&waitTimer.milliseconds()<=2000){
-                        out.clawServo.setPosition(1);
                     }
                     else if(waitTimer.milliseconds()>2000) {
                         out.setLiftPosition(2000);
